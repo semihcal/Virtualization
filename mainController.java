@@ -11,5 +11,8 @@ public class mainController {
 	system_trap.getInput("V1, Select * from *");
 	system_trap.parseInput();
 	system_trap.pushOutput();
+	system_trap.logData();
+	system_trap.checkLogs();
+	system_trap.populateHoneypot();
     }
 }

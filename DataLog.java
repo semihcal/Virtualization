@@ -1,7 +1,14 @@
+import java.io.*;
+import java.util.*;
+
 public class DataLog {
     public static void log(String message) {
-	PrintWriter out = new PrintWriter(new FileWrite("dblog.txt", true), true);
-	out.write(message);
-	out.close();
+	try{
+	    PrintWriter out = new PrintWriter(new FileWriter("dblog.txt", true), true);
+	    out.write(message);
+	    out.close();
+	} catch (Exception e){
+	    System.out.println("Error: " + e);
+	}
     }
 }
