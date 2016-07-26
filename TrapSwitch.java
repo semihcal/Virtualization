@@ -46,9 +46,11 @@ public class TrapSwitch {
                 if(line.substring(0, 3).equalsIgnoreCase(vm)){
                 	if(Integer.parseInt(line.substring(5, 6)) == 0){
                 		//real data
+                		//Semih connect this
                 		System.out.println("Real Data");
                 	} else {
                 		//fake data
+                		//Jaken connect this
                 		System.out.println("Fake Data");
                 	}
                 }
