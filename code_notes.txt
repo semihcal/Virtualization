@@ -1,0 +1,7 @@
+Changes from Monday:
+    - Spools Honeypot
+    - Python script checks for deltas in the log.txt the gui creates, and creates a trap instance for each change.
+    - The trap reads the most recent line from the log.txt file as the received input
+
+    Needed:
+        - Need some form of virtual machine check sent from the GUI so the trap can check against the valid user database.

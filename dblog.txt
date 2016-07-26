@@ -1,1 +1,0 @@
-VM: V1, Query:  Select * from *

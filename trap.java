@@ -13,8 +13,17 @@ public class trap {
     public String dbLogs = null;
 
     //receive input
-    public void getInput(String receivedInput){
-        this.receivedInput = receivedInput;
+    public void getInput(){
+        try (BufferedReader br = new BufferedReader(new FileReader("trap_commands/log.txt"))) {
+            String last = "";
+            String line;
+            while ((line = br.readLine()) != null) {
+                last = line;
+             }
+             this.receivedInput = last;
+        } catch(Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
     /*parse the input into which virtual machine
@@ -36,25 +45,32 @@ public class trap {
 
     //Query the database for valid Virtual Machines only
     public void queryDatabase(){
-        Connection conn = new Connection();
-        String SQLQuery = this.sqlQuery;
-    }
-
-    //Format Data for GUI
-    public void formatData(){
-
+        // connect to real database
+        // get output from real database
+        //log data to txt file here
+        String DBOUTPUT = "TEXT";
+        logData(DBOUTPUT);
+        //create view and send it to trap db.
     }
 
     //Query honeypot in cases of invalid Virtual Machines
     public void queryHoneypot(){
-        String hpQuery = this.sqlQuery;
+        // connect to honeypot
+        // get output from honeypot
+        String HONEYOUT = "TEXT";
+        //log data to txt file here
+        logHoney(HONEYOUT);
+        //create view and send it to trap db.
     }
 
     //Log the output in a text file so honeypot has basic data
     //to be modeled after.
-    public void logData(){
-        DataLog.log("VM: " + this.virtualMachine + ", ");
-        DataLog.log("Query: " + this.sqlQuery + "\n");
+    public void logData(String DBOUTPUT){
+        DataLog.log(DBOUTPUT);
+    }
+
+    public void logHoney(String HONEYOUT){
+        HoneyLog.log(HONEYOUT)
     }
 
     public void checkLogs(){
@@ -88,9 +104,13 @@ public class trap {
     
     //Spool honeypot when triggered
     public void spoolHoneypot(){
-        System.setProperty("user.dir", "C:\Program Files (x86)\VMware\VMware VIX");
+       // System.setProperty("user.dir", "C:\\Program Files (x86)\\VMware\\VMware\\ VIX");
+       System.setProperty("user.dir", "");
         Runtime rt = Runtime.getRuntime();
-        Process pr = rt.exec("vmrun start \"C:\Users\Jaken\Documents\Virtual Machines\OpenSUSE.vmx\"");
+        try{
+		 Process pr = rt.exec("vmrun start \"C:\\Users\\Jaken\\Documents\\Virtual Machines\\OpenSUSE.vmx\"");
+    	} catch (Exception e){
+		System.out.println("Error: "+ e);
+	    }   
     }
-
 }
