@@ -37,6 +37,7 @@ public class trap {
 
     //Query the database for valid Virtual Machines only
     public void queryDatabase(){
+        Connection conn = new Connection();
         String SQLQuery = this.sqlQuery;
     }
 
@@ -84,6 +85,13 @@ public class trap {
     public void pushOutput(){
         System.out.println("VM: " + this.virtualMachine);
         System.out.println("Query: " + this.sqlQuery);
+    }
+    
+    //Spool honeypot when triggered
+    public void spoolHoneypot(){
+        System.setProperty("user.dir", "C:\Program Files (x86)\VMware\VMware VIX");
+        Runtime rt = Runtime.getRuntime();
+        Process pr = rt.exec("vmrun start \"C:\Users\Jaken\Documents\Virtual Machines\OpenSUSE.vmx\"");
     }
 
 }
