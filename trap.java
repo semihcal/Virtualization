@@ -5,7 +5,6 @@ import java.util.*;
 import java.sql.*;
 import java.io.*;
 
-
 public class trap {
 
     public String virtualMachine = null;
