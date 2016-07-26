@@ -1,5 +1,3 @@
-//import static java.nio.file.*;
-
 public class mainController {
 
     public static void main(String[] args){
@@ -9,8 +7,7 @@ public class mainController {
 
     public void controller(){
 		System.out.println("File changed, creating trap instance");
-		trap system_trap = new trap();
+		TrapSwitch system_trap = new TrapSwitch();
 		system_trap.getInput();
-		system_trap.logData();
     }
 }
