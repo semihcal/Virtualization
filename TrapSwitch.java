@@ -46,8 +46,29 @@ public class TrapSwitch {
                 if(line.substring(0, 3).equalsIgnoreCase(vm)){
                 	if(Integer.parseInt(line.substring(5, 6)) == 0){
                 		//real data
-                		//Semih connect this
-                		System.out.println("Real Data");
+                			Class.forName("org.sqlite.JDBC");
+							Connection connection = null;
+							try {
+			 connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+			 Statement statement = connection.createStatement();
+		         statement.setQueryTimeout(30);
+			  statement.executeUpdate("drop table if exists person");
+		    	  statement.executeUpdate("create table person (id integer, name string)");
+			  statement.executeUpdate("insert into person values(1, 'leo')");
+		          statement.executeUpdate("insert into person values(2, 'yui')");
+			  ResultSet rs = statement.executeQuery("select * from person");
+			  while(rs.next())
+			  {
+				// read the result set
+			System.out.println("name = " + rs.getString("name"));
+			System.out.println("id = " + rs.getInt("id"));
+				  }
+			} catch ( Exception e ) {
+				  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			  System.exit(0);
+				}
+				System.out.println("Opened database successfully");
+							System.out.println("Real Data");
                 	} else {
                 		//fake data
                 		//Jaken connect this
