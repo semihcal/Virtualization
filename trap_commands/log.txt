@@ -1,0 +1,4 @@
+VM1, select * from Test
+VM2, select * from Test
+VM1, select all
+VM2, select all
